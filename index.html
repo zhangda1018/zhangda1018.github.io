@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Da Zhang - Academic Homepage</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.3/css/academicons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #526175;
+      --line: #dce8f5;
+      --line-strong: #bfd4ea;
+      --accent: #2563eb;
+      --accent-2: #0f766e;
+      --accent-soft: #eaf3ff;
+      --paper: #eef8ff;
+      --shadow: 0 14px 34px rgba(18, 32, 50, 0.08);
+      --shadow-soft: 0 8px 22px rgba(18, 32, 50, 0.06);
+      --max-width: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: #ffffff;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.72;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: #1d4ed8; }
+    img { max-width: 100%; display: block; }
+    section[id] { scroll-margin-top: 92px; }
+
+    .nav { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid rgba(230,232,236,.86); background: rgba(255,255,255,.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .nav-inner { width: min(100%, var(--max-width)); margin: 0 auto; padding: 12px 20px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; font-size: 13.5px; font-weight: 600; }
+    .nav-inner a { position: relative; padding: 7px 11px; border-radius: 999px; color: #44546a; transition: color .22s ease, background .22s ease, transform .22s ease; }
+    .nav-inner a:hover { color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); text-decoration: none; }
+
+    .page { width: min(100%, var(--max-width)); margin: 0 auto; padding: 38px 20px 56px; display: grid; grid-template-columns: 268px minmax(0, 1fr); gap: 44px; align-items: start; }
+    .sidebar { position: sticky; top: 78px; }
+    .portrait { width: 170px; height: 170px; margin-bottom: 21px; border-radius: 12px; object-fit: cover; border: 1px solid var(--line-strong); background: #f3f4f6; box-shadow: var(--shadow-soft); transition: transform .28s ease, box-shadow .28s ease, filter .28s ease; }
+    .portrait:hover { transform: translateY(-3px); box-shadow: var(--shadow); filter: saturate(1.04); }
+    .name { margin: 0 0 6px; font-family: "Source Serif 4", Georgia, serif; font-size: 1.84rem; line-height: 1.16; letter-spacing: -.018em; }
+    .role { margin: 0 0 14px; color: var(--muted); font-weight: 500; font-size: 14.5px; }
+    .contact-list, .meta-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: 14px; }
+    .contact-list { margin-top: 18px; }
+    .contact-list li, .meta-list li { display: flex; align-items: center; gap: 8px; }
+    .contact-list i, .meta-list i, .hf-icon { width: 18px; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; }
+    .contact-list li:hover a { color: #0f3048; text-decoration: underline; text-underline-offset: 3px; }
+    .side-block { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .keyword { border: 1px solid var(--line); background: rgba(255,255,255,.92); border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 600; color: #334155; transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease; }
+    .keyword:hover { transform: translateY(-2px); border-color: #b8d4f4; background: var(--accent-soft); box-shadow: 0 8px 18px rgba(37,99,235,.10); }
+
+    .main { display: grid; gap: 32px; }
+    .hero { padding: 24px 26px 28px; border: 1px solid var(--line); border-radius: 18px; background: #ffffff; box-shadow: 0 10px 28px rgba(18, 32, 50, .045); position: relative; overflow: hidden; }
+    .hero::after { content: none; }
+    .eyebrow { position: relative; z-index: 1; margin: 0 0 10px; color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .hero h2 { position: relative; z-index: 1; margin: 0 0 12px; max-width: 760px; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: clamp(1.10rem, 1.55vw, 1.38rem); line-height: 1.35; letter-spacing: .01em; font-weight: 650; color: #17345f; }
+    .hero p { margin: 0; max-width: 780px; color: #40516a; font-size: 1rem; }
+    .hero .keywords { margin-top: 18px; gap: 10px; position: relative; z-index: 1; }
+    .hero .keyword { font-size: 15.5px; padding: 8px 17px; }
+
+    .section { padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+    .section:last-child { border-bottom: 0; }
+    .section-title { margin: 0 0 16px; font-family: "Source Serif 4", Georgia, serif; font-size: 1.48rem; line-height: 1.25; letter-spacing: -.016em; }
+    .section-intro { margin: -6px 0 18px; color: var(--muted); font-size: 14.5px; }
+    .about-text p { margin: 0 0 12px; }
+
+    .research-grid, .pub-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+    .research-card, .pub-nav-card { position: relative; min-height: 168px; padding: 18px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.86); overflow: hidden; box-shadow: 0 8px 20px rgba(18,32,50,.035); transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease, background .26s ease; }
+    .research-card::before, .pub::before, .pub-nav-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(180deg, var(--accent), var(--accent-2)); opacity: 0; transition: opacity .26s ease; }
+    .research-card:hover, .pub-nav-card:hover { transform: translateY(-5px); border-color: #b8d4f4; box-shadow: var(--shadow); background: linear-gradient(180deg, #ffffff, #f7fbff); text-decoration: none; }
+    .research-card:hover::before, .pub:hover::before, .pub-nav-card:hover::before { opacity: 1; }
+    .research-card h3, .pub-nav-card h3 { margin: 0 0 8px; color: #111827; font-size: .98rem; line-height: 1.35; }
+    .research-card p, .pub-nav-card p { margin: 0; color: var(--muted); font-size: 13.7px; }
+
+    .research-card:hover h3, .pub-nav-card:hover h3 { color: var(--accent); }
+    .card-arrow { position: absolute; right: 16px; bottom: 14px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--accent); background: rgba(37,99,235,.08); font-size: 13px; opacity: .62; transform: translateX(-3px); transition: opacity .22s ease, transform .22s ease, background .22s ease, box-shadow .22s ease; }
+    .research-card:hover .card-arrow, .pub-nav-card:hover .card-arrow { opacity: 1; transform: translateX(0); background: rgba(37,99,235,.14); box-shadow: 0 8px 18px rgba(37,99,235,.16); }
+
+    .news-list, .clean-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .news-item { display: grid; grid-template-columns: 86px 1fr; gap: 16px; padding: 10px 12px; margin-left: -12px; border-radius: 12px; transition: background .22s ease, transform .22s ease; }
+    .news-item:hover { background: var(--accent-soft); transform: translateX(2px); }
+    .date { color: var(--accent); font-weight: 700; font-size: 14px; }
+
+    .pub-nav { margin: 10px 0 26px; }
+    .pub-group-title { margin: 30px 0 14px; color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: .055em; text-transform: uppercase; }
+    .pub-group-title a { color: inherit; }
+    .pub-group-title a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .pub-list { display: grid; gap: 18px; }
+    .pub { position: relative; display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 20px; padding: 16px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.72); box-shadow: 0 8px 20px rgba(18,32,50,.025); overflow: hidden; transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease, background .26s ease; }
+    .pub:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: #b8d4f4; background: linear-gradient(180deg, #ffffff, #f8fcff); }
+    .pub-img { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #f3f4f6; min-height: 118px; }
+    .pub-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .32s ease, filter .32s ease; }
+    .pub:hover .pub-img img { transform: scale(1.035); filter: saturate(1.05); }
+    .pub-title { display: inline-block; margin-bottom: 6px; color: #111827; font-weight: 700; line-height: 1.42; transition: color .2s ease; }
+    .pub-title:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .venue { display: inline-flex; margin-left: 8px; padding: 2px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 11.5px; font-weight: 700; vertical-align: 1px; }
+    .authors { color: #44546a; font-size: 14px; margin-bottom: 8px; }
+    .authors strong { color: #111827; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; font-size: 13px; font-weight: 650; }
+    .links a { border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: #fff; transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+    .links a:hover { transform: translateY(-1px); border-color: #b8d4f4; background: var(--accent-soft); text-decoration: none; }
+    .star-badge { display: inline-flex; align-items: center; padding: 0 !important; border: 0 !important; background: transparent !important; }
+    .star-badge img { height: 20px; width: auto; border-radius: 999px; transition: transform .2s ease, filter .2s ease; }
+    .star-badge:hover img { transform: translateY(-1px); filter: saturate(1.05); }
+    .desc { margin: 0; color: var(--muted); font-size: 14px; }
+    .placeholder-pub { border-style: dashed; background: linear-gradient(135deg, rgba(255,255,255,.86), rgba(235,247,255,.68)); }
+    .placeholder-pub .pub-img { display: flex; align-items: center; justify-content: center; color: var(--accent); font-weight: 700; letter-spacing: .02em; background: var(--paper); }
+    .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .clean-list li { color: #44546a; }
+    .footer { padding-top: 4px; color: #98a2b3; font-size: 13px; }
+
+    @media (max-width: 900px) { .page { grid-template-columns: 1fr; gap: 30px; padding-top: 30px; } .sidebar { position: static; display: grid; grid-template-columns: 170px 1fr; gap: 22px; align-items: start; } .portrait { margin-bottom: 0; } .research-grid, .pub-nav, .two-col { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .nav-inner { justify-content: flex-start; gap: 6px; overflow-x: auto; flex-wrap: nowrap; } .sidebar { display: block; } .portrait { width: 150px; height: 150px; margin-bottom: 18px; } .pub { grid-template-columns: 1fr; } .news-item { grid-template-columns: 1fr; gap: 4px; } .hero { padding: 20px; } }
+
+
+    /* ===== Fullscreen preview when hovering publication thumbnails ===== */
+    .img-preview-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 36px;
+      background: rgba(15, 23, 42, 0.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .img-preview-overlay.active {
+      display: flex;
+    }
+
+    .img-preview-overlay img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      transform: scale(0.96);
+      opacity: 0;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+
+    .img-preview-overlay.active img {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .pub-img img {
+      cursor: zoom-in;
+    }
+  </style>
+</head>
+<body id="top">
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#honors">Honors</a>
+      <a href="#service">Service</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <aside class="sidebar">
+      <img class="portrait" src="images/me.png" alt="Da Zhang" onerror="this.src='https://placehold.co/240x240?text=Bingyu+Li'" />
+      <div>
+        <h1 class="name">Da Zhang</h1>
+        <p class="role">Ph.D. Student, Northwestern Polytechnical Universitu</p>
+        <ul class="contact-list">
+          <li><i class="fas fa-envelope"></i><a href="mailto:zhangda1018@126.com">Email</a></li>
+          <li><i class="fab fa-github"></i><a href="https://github.com/ZhangDa" target="_blank">GitHub</a></li>
+          <li><span class="hf-icon" aria-hidden="true">🤗</span><a href="https://huggingface.co/kkk2026" target="_blank">Hugging Face</a></li>
+          <li><i class="ai ai-google-scholar"></i><a href="https://scholar.google.com/citations?user=33DDCgUAAAAJ&hl=zh-CN" target="_blank">Google Scholar</a></li>
+        </ul>
+        <div class="side-block">
+          <ul class="meta-list">
+            <li><i class="fas fa-location-dot"></i><span>Xi'an, China</span></li>
+            <li><i class="fas fa-microscope"></i><span>World Action Model</span></li>
+            <li><i class="fas fa-microscope"></i><span>Generative Video Models</span></li>
+            <li><i class="fas fa-microscope"></i><span>Open-world visual intelligence</span></li>
+          </ul>
+
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <p class="eyebrow">Academic Homepage</p>
+        <h2>Research Interests</h2>
+        <p>
+          I work on visual intelligence for dynamic open-world environments, focusing on complex scene perception, action-aware world modeling, and controllable video generation.
+        </p>
+        <div class="keywords" aria-label="Research directions">
+          <a class="keyword" href="#pub-world-action">World Action Models</a>
+          <a class="keyword" href="#pub-video-generation">Generative Video Models</a>
+          <a class="keyword" href="#pub-open-world">Open-World Complex Scene Perception</a>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <h2 class="section-title">About</h2>
+        <div class="about-text">
+          <p>
+            I am a joint Ph.D. student at <a href="https://en.ustc.edu.cn/" target="_blank">Northwestern Polytechnical University (NWPU) and Shanghai Artificial Intelligence Laboratory (AI Lab)</a>, supervised by <a href="https://scholar.google.com/citations?user=ahUibskAAAAJ&hl=zh-CN" target="_blank">Prof. Xuelong Li</a>.
+          </p>
+          <p>
+            My research focuses on open-world complex scene perception, world action models, and generative video models. I am interested in building systems that can perceive, reason about, and generate dynamic scenes under realistic, complex, and open-ended conditions.
+          </p>
+        </div>
+      </section>
+
+      <section id="research" class="section">
+        <h2 class="section-title">Research</h2>
+        <p class="section-intro">Current research directions.</p>
+        <div class="research-grid">
+          <a class="research-card" href="#pub-world-action" aria-label="View selected publications for World Action Models">
+            <h3>World Action Models</h3>
+            <p>Action-conditioned world modeling for understanding interactions, dynamics, and future outcomes.</p>
+            <span class="card-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+          </a>
+          <a class="research-card" href="#pub-video-generation" aria-label="View selected publications for Generative Video Models">
+            <h3>Generative Video Models</h3>
+            <p>Video generation and simulation models for dynamic scene understanding and controllable visual synthesis.</p>
+            <span class="card-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+          </a>
+          <a class="research-card" href="#pub-open-world" aria-label="View selected publications for Open-World Complex Scene Perception">
+            <h3>Open-World Complex Scene Perception</h3>
+            <p>Perception and segmentation in complex, long-tail, and open-vocabulary environments.</p>
+            <span class="card-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+          </a>
+        </div>
+      </section>
+
+      <section id="news" class="section">
+        <h2 class="section-title">News</h2>
+        <ul class="news-list">
+          <li class="news-item"><span class="date">2026.03</span><span>Four papers are accepted by <strong>CVPR 2026</strong> (2 first-author, 1 second-author, and 1 fourth-author paper).</span></li>
+          <li class="news-item"><span class="date">2025.11</span><span>One paper is accepted by <strong>AAAI 2026</strong> (Oral).</span></li>
+          <li class="news-item"><span class="date">2025.10</span><span>Awarded the <strong>National Scholarship for Graduate Students</strong>.</span></li>
+          <li class="news-item"><span class="date">2025.04</span><span><a href="https://arxiv.org/pdf/2408.01343" target="_blank">StitchFusion</a> is accepted by <strong>ACM MM 2025</strong> (Oral).</span></li>
+          <li class="news-item"><span class="date">2024.09</span><span>Started my Ph.D. journey at <strong>USTC</strong>.</span></li>
+        </ul>
+      </section>
+
+      <section id="publications" class="section">
+        <h2 class="section-title">Selected Publications</h2>
+        <p class="section-intro">Full publication list is available on <a href="https://scholar.google.com/citations?user=33DDCgUAAAAJ&hl=zh-CN" target="_blank">Google Scholar</a>. Selected works are organized around my three current research directions.</p>
+
+        <div class="pub-nav" aria-label="Publication directions">
+          <a class="pub-nav-card" href="#pub-world-action" aria-label="Jump to World Action Models publications"><h3>World Action Models</h3><p>Action-conditioned modeling for interactions, dynamics, and future outcomes.</p><span class="card-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span></a>
+          <a class="pub-nav-card" href="#pub-video-generation" aria-label="Jump to Generative Video Models publications"><h3>Generative Video Models</h3><p>Video generation, simulation, and controllable dynamic visual synthesis.</p><span class="card-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span></a>
+          <a class="pub-nav-card" href="#pub-open-world" aria-label="Jump to Open-World Complex Scene Perception publications"><h3>Open-World Complex Scene Perception</h3><p>Open-vocabulary perception, segmentation, and robust scene understanding.</p><span class="card-arrow" aria-hidden="true"><i class="fas fa-arrow-right"></i></span></a>
+        </div>
+
+        <h3 id="pub-world-action" class="pub-group-title"><a href="#pub-world-action">World Action Models</a></h3>
+        <div class="pub-list">
+          <article class="pub placeholder-pub"><div class="pub-img">World Action Models</div><div><a class="pub-title" href="https://scholar.google.com/citations?user=33DDCgUAAAAJ&hl=zh-CN" target="_blank">Selected works to be added</a><span class="venue">In progress</span><div class="links"><a href="https://scholar.google.com/citations?user=33DDCgUAAAAJ&hl=zh-CN" target="_blank">Google Scholar</a></div><p class="desc">Action-conditioned world modeling for understanding interactions, dynamics, and future outcomes.</p></div></article>
+        </div>
+
+        <h3 id="pub-video-generation" class="pub-group-title"><a href="#pub-video-generation">Generative Video Models</a></h3>
+        <div class="pub-list">
+          <article class="pub"><div class="pub-img"><img src="images/RATS.png" alt="RATS" onerror="this.src='https://placehold.co/300x180?text=RATS'" /></div><div><a class="pub-title" href="https://arxiv.org/abs/2604.14910" target="_blank">Reward-Aware Trajectory Shaping for Few-step Visual Generation</a><span class="venue">arXiv 2026</span><div class="authors">Rui Li*, <strong>Bingyu Li*</strong>, Yuanzhi Liang, Haibin Huang, Chi Zhang, XueLong Li</div><div class="links"><a href="https://arxiv.org/abs/2604.14910" target="_blank">Paper</a><a href="https://rlustc.github.io/Rats/" target="_blank">Paper Page</a></div><p class="desc">Reward-aware trajectory shaping for efficient few-step visual generation across image and video generation settings.</p></div></article>
+        </div>
+
+        <h3 id="pub-open-world" class="pub-group-title"><a href="#pub-open-world">Open-World Complex Scene Perception</a></h3>
+        <div class="pub-list">
+          <article class="pub">
+            <div class="pub-img">
+              <img src="images/MTRefSeg.png" alt="MTRefSeg" onerror="this.src='https://placehold.co/300x180?text=MTRefSeg'" />
+            </div>
+            <div>
+              <a class="pub-title" href="https://arxiv.org/abs/2606.00987" target="_blank">
+                An Open-Source Benchmark and Baseline for Multi-temporal Referring Segmentation
+              </a>
+              <span class="venue">arXiv 2026</span>
+
+              <div class="authors">
+                <strong>Bingyu Li*</strong>, Da Zhang*, Tao Huo, Zhiyuan Zhao, Junyu Gao, Xuelong Li
+              </div>
+
+              <div class="links">
+                <a href="https://arxiv.org/abs/2606.00987" target="_blank">Paper</a>
+                <a href="https://libingyu01.github.io/MTRefSeg/" target="_blank">Project Page</a>
+                <a href="https://github.com/LiBingyu01/MTRefSeg" target="_blank">Code</a>
+                <a class="star-badge" href="https://github.com/LiBingyu01/MTRefSeg" target="_blank" aria-label="GitHub stars">
+                  <img src="https://img.shields.io/github/stars/LiBingyu01/MTRefSeg?style=social" alt="GitHub stars" />
+                </a>
+                <a href="https://huggingface.co/datasets/kkk2026/MTRefSeg-21K" target="_blank">Dataset</a>
+                <a href="https://huggingface.co/datasets/kkk2026/MTRefSeg_Pretrained" target="_blank">Pretraining Dataset</a>
+                <a href="https://huggingface.co/kkk2026/MTRefSeg_ckpt" target="_blank">Pretrained Model Weights</a>
+                <a href="https://github.com/LiBingyu01/MTRefSeg/tree/Other_MLLM_RCD" target="_blank">Other LVLMs</a>
+              </div>
+
+              <p class="desc">
+                MTRefSeg introduces Multi-temporal Referring Segmentation (MTRS), where models compare temporally related images
+                and segment the language-described changed region. The work builds MTRefSeg-21K with 21K bi-image-text-mask annotations
+                and proposes MTRefSeg-R1, a change-aware LVLM trained by vision-only temporal pretraining followed by referring
+                multi-temporal fine-tuning.
+              </p>
+            </div>
+          </article>
+          <article class="pub"><div class="pub-img"><img src="images/pi-seg-1.png" alt="Pi-Seg" onerror="this.src='https://placehold.co/300x180?text=Pi-Seg'" /></div><div><a class="pub-title" href="https://arxiv.org/pdf/2604.15652" target="_blank">Towards Realistic Open-Vocabulary Remote Sensing Segmentation: Benchmark and Baseline</a><span class="venue">arXiv 2026</span><div class="authors"><strong>Bingyu Li</strong>, T Huo, H Dong, D Zhang, Z Zhao, J Gao, X Li</div><div class="links"><a href="https://github.com/LiBingyu01/RSKT-Seg/tree/Pi-Seg" target="_blank">Code</a><a class="star-badge" href="https://github.com/LiBingyu01/RSKT-Seg" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/LiBingyu01/RSKT-Seg?style=social" alt="GitHub stars" /></a><a href="https://arxiv.org/pdf/2604.15652" target="_blank">Paper</a></div><p class="desc">A benchmark and baseline for realistic open-vocabulary remote sensing segmentation.</p></div></article>
+          <article class="pub"><div class="pub-img"><img src="images/rskt.png" alt="RSKT-Seg" onerror="this.src='https://placehold.co/300x180?text=RSKT-Seg'" /></div><div><a class="pub-title" href="https://arxiv.org/pdf/2509.12040" target="_blank">Exploring Efficient Open-Vocabulary Segmentation in Remote Sensing</a><span class="venue">AAAI 2026</span><div class="authors"><strong>Bingyu Li</strong>, H Dong, D Zhang, Z Zhao, J Gao, X Li</div><div class="links"><a href="https://github.com/LiBingyu01/RSKT-Seg" target="_blank">Code</a><a class="star-badge" href="https://github.com/LiBingyu01/RSKT-Seg" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/LiBingyu01/RSKT-Seg?style=social" alt="GitHub stars" /></a><a href="https://arxiv.org/pdf/2509.12040" target="_blank">Paper</a></div><p class="desc">Efficient open-vocabulary segmentation methods tailored to remote sensing imagery.</p></div></article>
+          <article class="pub"><div class="pub-img"><img src="images/maris.png" alt="MARIS" onerror="this.src='https://placehold.co/300x180?text=MARIS'" /></div><div><a class="pub-title" href="https://arxiv.org/abs/2510.15398" target="_blank">MARIS: Marine Open-Vocabulary Instance Segmentation</a><span class="venue">CVPR 2026</span><div class="authors"><strong>Bingyu Li</strong>, F Wang, D Zhang, Z Zhao, J Gao, X Li</div><div class="links"><a href="https://github.com/LiBingyu01/MARIS" target="_blank">Code</a><a class="star-badge" href="https://github.com/LiBingyu01/MARIS" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/LiBingyu01/MARIS?style=social" alt="GitHub stars" /></a><a href="https://arxiv.org/abs/2510.15398" target="_blank">Paper</a></div><p class="desc">A benchmark and method for open-vocabulary instance segmentation in marine environments.</p></div></article>
+          <article class="pub"><div class="pub-img"><img src="images/earth2ocean.png" alt="Earth2Ocean" onerror="this.src='https://placehold.co/300x180?text=Earth2Ocean'" /></div><div><a class="pub-title" href="https://arxiv.org/pdf/2511.07923" target="_blank">Exploring the Underwater World Segmentation without Extra Training</a><span class="venue">CVPR 2026</span><div class="authors"><strong>Bingyu Li</strong>, T Huo, D Zhang, Z Zhao, J Gao, X Li</div><div class="links"><a href="https://github.com/LiBingyu01/Earth2Ocean" target="_blank">Code</a><a class="star-badge" href="https://github.com/LiBingyu01/Earth2Ocean" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/LiBingyu01/Earth2Ocean?style=social" alt="GitHub stars" /></a><a href="https://arxiv.org/pdf/2511.07923" target="_blank">Paper</a></div><p class="desc">Training-free segmentation methods for underwater scenes.</p></div></article>
+          <article class="pub"><div class="pub-img"><img src="images/stitchfusion.png" alt="StitchFusion" onerror="this.src='https://placehold.co/300x180?text=StitchFusion'" /></div><div><a class="pub-title" href="https://arxiv.org/pdf/2408.01343" target="_blank">StitchFusion: Weaving Any Visual Modalities to Enhance Multimodal Semantic Segmentation</a><span class="venue">ACM MM 2025</span><div class="authors"><strong>Bingyu Li</strong>, D Zhang, Z Zhao, J Gao, X Li</div><div class="links"><a href="https://github.com/LiBingyu01/StitchFusion" target="_blank">Code</a><a class="star-badge" href="https://github.com/LiBingyu01/StitchFusion" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/LiBingyu01/StitchFusion?style=social" alt="GitHub stars" /></a><a href="https://arxiv.org/pdf/2408.01343" target="_blank">Paper</a></div><p class="desc">A framework for integrating arbitrary visual modalities to improve multimodal semantic segmentation.</p></div></article>
+          <article class="pub"><div class="pub-img"><img src="images/u3m.png" alt="U3M" onerror="this.src='https://placehold.co/300x180?text=U3M'" /></div><div><a class="pub-title" href="https://www.sciencedirect.com/science/article/abs/pii/S0031320325004613" target="_blank">U3M: Unbiased Multiscale Modal Fusion Model for Multimodal Semantic Segmentation</a><span class="venue">Pattern Recognition 2025</span><div class="authors"><strong>Bingyu Li</strong>, D Zhang, Z Zhao, J Gao, X Li</div><div class="links"><a href="https://github.com/LiBingyu01/U3M" target="_blank">Code</a><a class="star-badge" href="https://github.com/LiBingyu01/U3M" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/LiBingyu01/U3M?style=social" alt="GitHub stars" /></a><a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320325004613" target="_blank">Paper</a></div><p class="desc">An unbiased multiscale modal fusion framework for multimodal semantic segmentation.</p></div></article>
+          <article class="pub"><div class="pub-img"><img src="images/QICA.png" alt="QICA" onerror="this.src='https://placehold.co/300x180?text=QICA'" /></div><div><a class="pub-title" href="https://arxiv.org/abs/2603.16129" target="_blank">Boosting Quantitative and Spatial Awareness for Zero-Shot Object Counting</a><span class="venue">CVPR 2026</span><div class="authors">D Zhang, <strong>Bingyu Li</strong>, F Wang, Z Zhao, J Gao</div><div class="links"><a href="https://github.com/zhangda1018/QICA" target="_blank">Code</a><a class="star-badge" href="https://github.com/zhangda1018/QICA" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/zhangda1018/QICA?style=social" alt="GitHub stars" /></a><a href="https://arxiv.org/abs/2603.16129" target="_blank">Paper</a></div><p class="desc">Quantitative and spatial awareness for zero-shot object counting in complex scenes, supporting robust perception under open-ended visual conditions.</p></div></article>
+          <article class="pub"><div class="pub-img"><img src="images/fgaseg.png" alt="FGAseg" onerror="this.src='https://placehold.co/300x180?text=FGAseg'" /></div><div><a class="pub-title" href="https://arxiv.org/abs/2501.00877" target="_blank">FGAseg: Fine-Grained Pixel-Text Alignment for Open-Vocabulary Semantic Segmentation</a><span class="venue">arXiv 2025</span><div class="authors"><strong>Bingyu Li</strong>, D Zhang, Z Zhao, J Gao, X Li</div><div class="links"><a href="https://github.com/LiBingyu01/FGA-seg" target="_blank">Code</a><a class="star-badge" href="https://github.com/LiBingyu01/FGA-seg" target="_blank" aria-label="GitHub stars"><img src="https://img.shields.io/github/stars/LiBingyu01/FGA-seg?style=social" alt="GitHub stars" /></a><a href="https://arxiv.org/abs/2501.00877" target="_blank">Paper</a></div><p class="desc">Fine-grained pixel-text alignment for open-vocabulary semantic segmentation.</p></div></article>
+         
+        </div>      </section>
+
+      <section id="honors" class="section">
+        <h2 class="section-title">Honors</h2>
+        <ul class="clean-list">
+          <li>2025, National Scholarship for Graduate Students.</li>
+        </ul>
+      </section>
+
+      <section id="service" class="section">
+        <h2 class="section-title">Academic Service</h2>
+        <div class="two-col">
+          <div>
+            <strong>Reviewer - Journals</strong>
+            <ul class="clean-list"><li>TAPMI</li><li>TNNLS</li><li>TGRS</li><li>Pattern Recognition</li><li>Related journals</li></ul>
+          </div>
+          <div>
+            <strong>Reviewer - Conferences</strong>
+            <ul class="clean-list"><li>CVPR</li><li>NeurIPS</li><li>ICLR</li><li>Other major conferences</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">Copyright 2026 Da Zhang. Last updated: 2026.</footer>
+    </main>
+  </div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const previewOverlay = document.createElement("div");
+      previewOverlay.className = "img-preview-overlay";
+      previewOverlay.innerHTML = '<img src="" alt="Publication preview" />';
+      document.body.appendChild(previewOverlay);
+
+      const previewImg = previewOverlay.querySelector("img");
+
+      document.querySelectorAll(".pub-img img").forEach(function (img) {
+        img.addEventListener("mouseenter", function () {
+          previewImg.src = img.currentSrc || img.src;
+          previewImg.alt = img.alt || "Publication preview";
+          previewOverlay.classList.add("active");
+        });
+
+        img.addEventListener("mouseleave", function () {
+          previewOverlay.classList.remove("active");
+          previewImg.src = "";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
